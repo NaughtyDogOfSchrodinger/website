@@ -1,12 +1,4 @@
-import {
-  AcademicCapIcon,
-  ArrowDownTrayIcon,
-  BuildingOffice2Icon,
-  CalendarIcon,
-  FlagIcon,
-  MapIcon,
-  SparklesIcon,
-} from '@heroicons/react/24/outline';
+import {BuildingOffice2Icon, PhoneIcon} from '@heroicons/react/24/outline';
 
 import GithubIcon from '../components/Icon/GithubIcon';
 import InstagramIcon from '../components/Icon/InstagramIcon';
@@ -14,18 +6,13 @@ import LinkedInIcon from '../components/Icon/LinkedInIcon';
 import StackOverflowIcon from '../components/Icon/StackOverflowIcon';
 import TwitterIcon from '../components/Icon/TwitterIcon';
 import heroImage from '../images/header-background.webp';
-import porfolioImage1 from '../images/portfolio/portfolio-1.jpg';
-import porfolioImage2 from '../images/portfolio/portfolio-2.jpg';
-import porfolioImage3 from '../images/portfolio/portfolio-3.jpg';
-import porfolioImage4 from '../images/portfolio/portfolio-4.jpg';
-import porfolioImage5 from '../images/portfolio/portfolio-5.jpg';
-import porfolioImage6 from '../images/portfolio/portfolio-6.jpg';
-import porfolioImage7 from '../images/portfolio/portfolio-7.jpg';
-import porfolioImage8 from '../images/portfolio/portfolio-8.jpg';
-import porfolioImage9 from '../images/portfolio/portfolio-9.jpg';
-import porfolioImage10 from '../images/portfolio/portfolio-10.jpg';
-import porfolioImage11 from '../images/portfolio/portfolio-11.jpg';
-import profilepic from '../images/profilepic.jpg';
+import icon from '../images/icon.png';
+import p01 from '../images/portfolio/p-01.png';
+import p02 from '../images/portfolio/p-02.png';
+import p03 from '../images/portfolio/p-03.png';
+import p04 from '../images/portfolio/p-04.png';
+import p05 from '../images/portfolio/p-05.png';
+import p06 from '../images/portfolio/p-06.png';
 import testimonialImage from '../images/testimonial.webp';
 import {
   About,
@@ -44,8 +31,8 @@ import {
  * Page meta data
  */
 export const homePageMeta: HomepageMeta = {
-  title: 'React Resume Template',
-  description: "Example site built with Tim Baker's react resume template",
+  title: '诺一曼科技',
+  description: '让所有的企业用得起AI',
 };
 
 /**
@@ -53,47 +40,53 @@ export const homePageMeta: HomepageMeta = {
  */
 export const SectionId = {
   Hero: 'hero',
+  Portfolio: 'product',
+  Resume: 'resume',
   About: 'about',
   Contact: 'contact',
-  Portfolio: 'portfolio',
-  Resume: 'resume',
   Skills: 'skills',
   Stats: 'stats',
   Testimonials: 'testimonials',
 } as const;
 
-export type SectionId = typeof SectionId[keyof typeof SectionId];
+export type SectionId = (typeof SectionId)[keyof typeof SectionId];
+
+export const nameMap: Record<string, string> = {
+  hero: '主页',
+  about: '关于我们',
+  contact: '联系我们',
+  product: '产品案例',
+  resume: '商业模式',
+  skills: 'skills',
+  stats: 'stats',
+  testimonials: '团队概况',
+};
 
 /**
  * Hero section
  */
 export const heroData: Hero = {
   imageSrc: heroImage,
-  name: `I'm Tim Baker.`,
+  name: `让所有的企业用得起AI`,
   description: (
     <>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        I'm a Victoria based <strong className="text-stone-100">Full Stack Software Engineer</strong>, currently working
-        at <strong className="text-stone-100">Instant Domains</strong> helping build a modern, mobile-first, domain
-        registrar and site builder.
-      </p>
-      <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        In my free time time, you can catch me training in <strong className="text-stone-100">Muay Thai</strong>,
-        plucking my <strong className="text-stone-100">banjo</strong>, or exploring beautiful{' '}
-        <strong className="text-stone-100">Vancouver Island</strong>.
+        专注大模型<strong className="text-stone-100">AI</strong>应用，提供全球化
+        <strong className="text-stone-100">AI</strong>产品，提供让企业用得起的
+        <strong className="text-stone-100">AI</strong>能力，永远客户第一，保持长期主义
       </p>
     </>
   ),
   actions: [
-    {
-      href: '/assets/resume.pdf',
-      text: 'Resume',
-      primary: true,
-      Icon: ArrowDownTrayIcon,
-    },
+    // {
+    //   href: '/assets/resume.pdf',
+    //   text: 'Resume',
+    //   primary: true,
+    //   Icon: ArrowDownTrayIcon,
+    // },
     {
       href: `#${SectionId.Contact}`,
-      text: 'Contact',
+      text: '联系我们',
       primary: false,
     },
   ],
@@ -103,17 +96,11 @@ export const heroData: Hero = {
  * About section
  */
 export const aboutData: About = {
-  profileImageSrc: profilepic,
-  description: `Use this bio section as your way of describing yourself and saying what you do, what technologies you like
-  to use or feel most comfortable with, describing your personality, or whatever else you feel like throwing
-  in.`,
+  profileImageSrc: icon,
+  description: `我们是一家专注于AI应用开发的公司，拥有高学历、高素质、高质量的团队成员，具备深厚的学术背景和实战经验，长期在多个行业深耕探索。我们提供全方位的AI解决方案，包括自然语言处理、机器学习、计算机视觉等领域，并为客户提供相关的咨询、培训和维护等服务，确保客户的应用能够持续运行。我们注重团队合作、沟通协作等软技能，为客户提供更加完善的服务。`,
   aboutItems: [
-    {label: 'Location', text: 'Victoria, BC', Icon: MapIcon},
-    {label: 'Age', text: '29', Icon: CalendarIcon},
-    {label: 'Nationality', text: 'Canadian / Irish', Icon: FlagIcon},
-    {label: 'Interests', text: 'Motorcycles, Muay Thai, Banjos', Icon: SparklesIcon},
-    {label: 'Study', text: 'University of Victoria', Icon: AcademicCapIcon},
-    {label: 'Employment', text: 'Instant Domains, inc.', Icon: BuildingOffice2Icon},
+    {label: '公司地址', text: '浙江省杭州市钱塘区白杨街道17号大街100号1幢367室', Icon: BuildingOffice2Icon},
+    {label: '联系电话', text: '4008692092', Icon: PhoneIcon},
   ],
 };
 
@@ -196,70 +183,40 @@ export const skills: SkillGroup[] = [
  */
 export const portfolioItems: PortfolioItem[] = [
   {
-    title: 'Project title 1',
-    description: 'Give a short description of your project here.',
-    url: 'https://timbaker.me',
-    image: porfolioImage1,
+    title: '智慧校园百事通',
+    description: '智慧校园百事通',
+    url: '#product',
+    image: p01,
   },
   {
-    title: 'Project title 2',
-    description: 'Give a short description of your project here.',
-    url: 'https://timbaker.me',
-    image: porfolioImage2,
+    title: '电商AI营销',
+    description: '电商AI营销解决方案',
+    url: '#product',
+    image: p02,
   },
   {
-    title: 'Project title 3',
-    description: 'Give a short description of your project here.',
-    url: 'https://timbaker.me',
-    image: porfolioImage3,
+    title: 'AI客服',
+    description: 'AI客服解决方案',
+    url: '#product',
+    image: p03,
   },
   {
-    title: 'Project title 4',
-    description: 'Give a short description of your project here.',
-    url: 'https://timbaker.me',
-    image: porfolioImage4,
+    title: 'AI程序员',
+    description: 'AI程序员',
+    url: '#product',
+    image: p04,
   },
   {
-    title: 'Project title 5',
-    description: 'Give a short description of your project here.',
-    url: 'https://timbaker.me',
-    image: porfolioImage5,
+    title: 'AI文员',
+    description: 'AI文员',
+    url: '#product',
+    image: p05,
   },
   {
-    title: 'Project title 6',
-    description: 'Give a short description of your project here.',
-    url: 'https://timbaker.me',
-    image: porfolioImage6,
-  },
-  {
-    title: 'Project title 7',
-    description: 'Give a short description of your project here.',
-    url: 'https://timbaker.me',
-    image: porfolioImage7,
-  },
-  {
-    title: 'Project title 8',
-    description: 'Give a short description of your project here.',
-    url: 'https://timbaker.me',
-    image: porfolioImage8,
-  },
-  {
-    title: 'Project title 9',
-    description: 'Give a short description of your project here.',
-    url: 'https://timbaker.me',
-    image: porfolioImage9,
-  },
-  {
-    title: 'Project title 10',
-    description: 'Give a short description of your project here.',
-    url: 'https://timbaker.me',
-    image: porfolioImage10,
-  },
-  {
-    title: 'Project title 11',
-    description: 'Give a short description of your project here.',
-    url: 'https://timbaker.me',
-    image: porfolioImage11,
+    title: 'AI设计',
+    description: 'AI设计',
+    url: '#product',
+    image: p06,
   },
 ];
 
@@ -271,38 +228,67 @@ export const education: TimelineItem[] = [
     date: 'April 2007',
     location: 'Clown college',
     title: 'Masters in Beer tasting',
-    content: <p>Describe your experience at school, what you learned, what useful skills you have acquired etc.</p>,
+    content: <p className="font-semibold">SAAS服务账号</p>,
   },
   {
     date: 'March 2003',
     location: 'School of Business',
     title: 'What did you study 101',
-    content: <p>Describe your experience at school, what you learned, what useful skills you have acquired etc.</p>,
+    content: <p className="font-semibold">按年订阅</p>,
+  },
+  {
+    date: 'March 2003',
+    location: 'School of Business',
+    title: 'What did you study 101',
+    content: <p className="font-semibold">提供轻量、标准、专业、旗舰四个版本</p>,
+  },
+  {
+    date: 'March 2003',
+    location: 'School of Business',
+    title: 'What did you study 101',
+    content: <p className="font-semibold">持续迭代</p>,
   },
 ];
 
 export const experience: TimelineItem[] = [
   {
-    date: 'March 2010 - Present',
-    location: 'Awesome Development Company',
-    title: 'Senior UX Engineer',
-    content: (
-      <p>
-        Describe work, special projects, notable achievements, what technologies you have been working with, and
-        anything else that would be useful for an employer to know.
-      </p>
-    ),
+    date: 'March 2003',
+    location: 'School of Business',
+    title: 'What did you study 101',
+    content: <p className="font-semibold">SAAS整体服务买断</p>,
   },
   {
-    date: 'March 2007 - February 2010',
-    location: 'Garage Startup Studio',
-    title: 'Junior bug fixer',
-    content: (
-      <p>
-        Describe work, special projects, notable achievements, what technologies you have been working with, and
-        anything else that would be useful for an employer to know.
-      </p>
-    ),
+    date: 'March 2003',
+    location: 'School of Business',
+    title: 'What did you study 101',
+    content: <p className="font-semibold">原厂企业级支持</p>,
+  },
+  {
+    date: 'March 2003',
+    location: 'School of Business',
+    title: 'What did you study 101',
+    content: <p className="font-semibold">提供全面托管</p>,
+  },
+];
+
+export const customizeMode: TimelineItem[] = [
+  {
+    date: 'March 2003',
+    location: 'School of Business',
+    title: 'What did you study 101',
+    content: <p className="font-semibold">按需定制</p>,
+  },
+  {
+    date: 'March 2003',
+    location: 'School of Business',
+    title: 'What did you study 101',
+    content: <p className="font-semibold">部署支持</p>,
+  },
+  {
+    date: 'March 2003',
+    location: 'School of Business',
+    title: 'What did you study 101',
+    content: <p className="font-semibold">项目+服务支持</p>,
   },
 ];
 
@@ -313,18 +299,33 @@ export const testimonial: TestimonialSection = {
   imageSrc: testimonialImage,
   testimonials: [
     {
-      name: 'John Doe',
-      text: 'Use this as an opportunity to promote what it is like to work with you. High value testimonials include ones from current or past co-workers, managers, or from happy clients.',
+      name: '优秀的教育背景',
+      text: '我们的团队成员毕业于北京大学、哈尔滨工业大学等知名高校，全部为985高校毕业生，具有深厚的学术背景和专业技能',
       image: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/169.jpg',
     },
     {
-      name: 'Jane Doe',
-      text: 'Here you should write some nice things that someone has said about you. Encourage them to be specific and include important details (notes about a project you were on together, impressive quality produced, etc).',
+      name: '来自头部企业的优秀人才',
+      text: '我们的团队中有来自阿里、华为等头部企业的优秀人才，具有丰富的实战经验和行业经验，为团队带来了宝贵的经验和专业知识',
       image: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/14.jpg',
     },
     {
-      name: 'Someone else',
-      text: 'Add several of these, and keep them as fresh as possible, but be sure to focus on quality testimonials with strong highlights of your skills/work ethic.',
+      name: '丰富的行业经验',
+      text: '我们的团队成员在电商、医疗、地产、传媒、游戏等多个行业有丰富的实战经验和专业技能，能够为客户提供全方位的AI解决方案',
+      image: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/69.jpg',
+    },
+    {
+      name: '强大的技术实力',
+      text: '我们的团队成员掌握了自然语言处理、机器学习、计算机视觉等多种AI技术，能够开发高品质的AI应用',
+      image: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/69.jpg',
+    },
+    {
+      name: '敏捷的开发能力',
+      text: '我们的团队采用敏捷开发模式，能够快速响应客户需求，并迅速适应市场变化，为客户提供高效的开发服务',
+      image: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/69.jpg',
+    },
+    {
+      name: '完善的服务体系',
+      text: '我们不仅提供AI应用开发服务，还为客户提供相关的咨询、培训和维护等服务，确保客户的应用能够持续运行',
       image: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/69.jpg',
     },
   ],
@@ -335,8 +336,8 @@ export const testimonial: TestimonialSection = {
  */
 
 export const contact: ContactSection = {
-  headerText: 'Get in touch.',
-  description: 'Here is a good spot for a message to your readers to let them know how best to reach out to you.',
+  headerText: '联系我们',
+  description: '微信公众号',
   items: [
     {
       type: ContactType.Email,

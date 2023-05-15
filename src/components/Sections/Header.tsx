@@ -1,18 +1,20 @@
 import {Dialog, Transition} from '@headlessui/react';
 import {Bars3BottomRightIcon} from '@heroicons/react/24/outline';
 import classNames from 'classnames';
+import Image from 'next/image';
 import Link from 'next/link';
-import {FC, Fragment, memo, useCallback, useMemo, useState} from 'react';
+import React, {FC, Fragment, memo, useCallback, useMemo, useState} from 'react';
 
-import {SectionId} from '../../data/data';
+import {nameMap, SectionId} from '../../data/data';
 import {useNavObserver} from '../../hooks/useNavObserver';
+import logo from '../../images/logo.png';
 
 export const headerID = 'headerNav';
 
 const Header: FC = memo(() => {
   const [currentSection, setCurrentSection] = useState<SectionId | null>(null);
   const navSections = useMemo(
-    () => [SectionId.About, SectionId.Resume, SectionId.Portfolio, SectionId.Testimonials, SectionId.Contact],
+    () => [SectionId.Resume, SectionId.Portfolio, SectionId.Testimonials, SectionId.About],
     [],
   );
 
@@ -37,8 +39,11 @@ const DesktopNav: FC<{navSections: SectionId[]; currentSection: SectionId | null
     const activeClass = classNames(baseClass, 'text-orange-500');
     const inactiveClass = classNames(baseClass, 'text-neutral-100');
     return (
-      <header className="fixed top-0 z-50 hidden w-full bg-neutral-900/50 p-4 backdrop-blur sm:block" id={headerID}>
-        <nav className="flex justify-center gap-x-8">
+      <header className="flex items-center justify-between fixed top-0 z-50 hidden w-full bg-neutral-900/50 p-4 backdrop-blur sm:block">
+        <nav className="flex justify-center gap-x-8 items-center">
+          <Link href="/">
+            <Image alt="Logo" className="w-28 h-10" placeholder="blur" src={logo} />
+          </Link>
           {navSections.map(section => (
             <NavItem
               activeClass={activeClass}
@@ -97,6 +102,9 @@ const MobileNav: FC<{navSections: SectionId[]; currentSection: SectionId | null}
               leaveTo="-translate-x-full">
               <div className="relative w-4/5 bg-stone-800">
                 <nav className="mt-5 flex flex-col gap-y-2 px-2">
+                  <Link href="/">
+                    <Image alt="Logo" className="w-28 h-10" placeholder="blur" src={logo} />
+                  </Link>
                   {navSections.map(section => (
                     <NavItem
                       activeClass={activeClass}
@@ -130,7 +138,7 @@ const NavItem: FC<{
       href={`/#${section}`}
       key={section}
       onClick={onClick}>
-      {section}
+      {nameMap[section]}
     </Link>
   );
 });

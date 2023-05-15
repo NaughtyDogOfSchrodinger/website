@@ -1,17 +1,23 @@
+import {useRouter} from 'next/router';
 import {FC, memo, useCallback, useMemo, useState} from 'react';
 
-interface FormData {
+export interface FormData {
   name: string;
+  phone: string;
   email: string;
+  company: string;
   message: string;
 }
 
 const ContactForm: FC = memo(() => {
+  const router = useRouter();
   const defaultData = useMemo(
     () => ({
       name: '',
       email: '',
       message: '',
+      phone: '',
+      company: '',
     }),
     [],
   );
@@ -35,9 +41,20 @@ const ContactForm: FC = memo(() => {
       /**
        * This is a good starting point to wire up your form submission logic
        * */
-      console.log('Data to send: ', data);
+
+      await fetch(`/api/sendEmail`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then(() => {
+          router.reload();
+        })
+        .catch(() => router.reload());
     },
-    [data],
+    [data, router],
   );
 
   const inputClasses =
@@ -45,22 +62,40 @@ const ContactForm: FC = memo(() => {
 
   return (
     <form className="grid min-h-[320px] grid-cols-1 gap-y-4" method="POST" onSubmit={handleSendMessage}>
-      <input className={inputClasses} name="name" onChange={onChange} placeholder="Name" required type="text" />
+      <input className={inputClasses} name="name" onChange={onChange} placeholder="姓名" required type="text" />
+      <input
+        autoComplete="email"
+        className={inputClasses}
+        name="phone"
+        onChange={onChange}
+        placeholder="手机号"
+        required
+        type="tel"
+      />
       <input
         autoComplete="email"
         className={inputClasses}
         name="email"
         onChange={onChange}
-        placeholder="Email"
+        placeholder="邮箱"
         required
         type="email"
+      />
+      <input
+        autoComplete="email"
+        className={inputClasses}
+        name="company"
+        onChange={onChange}
+        placeholder="公司名称"
+        required
+        type="text"
       />
       <textarea
         className={inputClasses}
         maxLength={250}
         name="message"
         onChange={onChange}
-        placeholder="Message"
+        placeholder="留言"
         required
         rows={6}
       />
@@ -68,7 +103,7 @@ const ContactForm: FC = memo(() => {
         aria-label="Submit contact form"
         className="w-max rounded-full border-2 border-orange-600 bg-stone-900 px-4 py-2 text-sm font-medium text-white shadow-md outline-none hover:bg-stone-800 focus:ring-2 focus:ring-orange-600 focus:ring-offset-2 focus:ring-offset-stone-800"
         type="submit">
-        Send Message
+        提交
       </button>
     </form>
   );
