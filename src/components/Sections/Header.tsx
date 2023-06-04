@@ -40,32 +40,30 @@ const DesktopNav: FC<{navSections: SectionId[]; currentSection: SectionId | null
     const inactiveClass = classNames(baseClass, 'text-neutral-100');
     return (
       <header className="fixed top-0 z-50 hidden w-full bg-neutral-900/50 p-4 backdrop-blur sm:block">
-          <div className="flex items-center justify-center">
-              <div className="flex flex-none flex-grow-0 justify-center gap-x-2 items-center ">
-                  <Link className={baseClass} href="/">
-                      诺一曼科技
-                  </Link>
-                  <Link href="/">
-                      <Image alt="Logo" className="w-28 h-10" placeholder="blur" src={logo} />
-                  </Link>
-              </div>
-              <nav className="flex flex-grow text-center justify-center gap-x-8 items-center ">
-                  {navSections.map(section => (
-                      <NavItem
-                          activeClass={activeClass}
-                          current={section === currentSection}
-                          inactiveClass={inactiveClass}
-                          key={section}
-                          section={section}
-                      />
-                  ))}
-              </nav>
-              {/*<Link href="/">*/}
-              {/*    <Image alt="Logo" className="w-28 h-10" placeholder="blur" src={logo} />*/}
-              {/*</Link>*/}
+        <div className="flex items-center justify-center">
+          <div className="flex flex-none flex-grow-0 justify-center gap-x-2 items-center ">
+            <Link className={baseClass} href="/">
+              诺一曼科技
+            </Link>
+            <Link href="/">
+              <Image alt="Logo" className="w-28 h-10" placeholder="blur" src={logo} />
+            </Link>
           </div>
-
-
+          <nav className="flex flex-grow text-center justify-center gap-x-8 items-center ">
+            {navSections.map(section => (
+              <NavItem
+                activeClass={activeClass}
+                current={section === currentSection}
+                inactiveClass={inactiveClass}
+                key={section}
+                section={section}
+              />
+            ))}
+          </nav>
+          {/*<Link href="/">*/}
+          {/*    <Image alt="Logo" className="w-28 h-10" placeholder="blur" src={logo} />*/}
+          {/*</Link>*/}
+        </div>
       </header>
     );
   },
