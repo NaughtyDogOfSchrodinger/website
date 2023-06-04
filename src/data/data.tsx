@@ -47,6 +47,7 @@ export const SectionId = {
   Skills: 'skills',
   Stats: 'stats',
   Testimonials: 'testimonials',
+  CustomerService: 'customerService',
 } as const;
 
 export type SectionId = (typeof SectionId)[keyof typeof SectionId];
@@ -60,6 +61,7 @@ export const nameMap: Record<string, string> = {
   skills: 'skills',
   stats: 'stats',
   testimonials: '团队概况',
+  customerService: '客服',
 };
 
 /**

@@ -46,7 +46,7 @@ export const send = (email: string, data: FormData) => {
       subject: '官网留言',
       html: template(data),
     };
-    mailTransport.sendMail(options, function (err: any) {
+    mailTransport.sendMail(options, function (err: unknown) {
       if (err) {
         console.log('send email error->', err);
         reject('邮箱异常');

@@ -14,7 +14,7 @@ export const headerID = 'headerNav';
 const Header: FC = memo(() => {
   const [currentSection, setCurrentSection] = useState<SectionId | null>(null);
   const navSections = useMemo(
-    () => [SectionId.Resume, SectionId.Portfolio, SectionId.About, SectionId.Testimonials],
+    () => [SectionId.Resume, SectionId.Portfolio, SectionId.About, SectionId.Testimonials, SectionId.CustomerService],
     [],
   );
 
@@ -76,8 +76,8 @@ const MobileNav: FC<{navSections: SectionId[]; currentSection: SectionId | null}
         <button
           aria-label="Menu Button"
           className="fixed right-2 top-2 z-40 rounded-md bg-orange-500 p-2 ring-offset-gray-800/60 hover:bg-orange-400 focus:outline-none focus:ring-0 focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 sm:hidden"
-          hidden={true} onClick={toggleOpen}>
-
+          hidden={true}
+          onClick={toggleOpen}>
           <Bars3BottomRightIcon className="h-8 w-8 text-white" />
           <span className="sr-only">Open sidebar</span>
         </button>
@@ -136,7 +136,11 @@ const NavItem: FC<{
   return (
     <Link
       className={classNames(current ? activeClass : inactiveClass)}
-      href={`/#${section}`}
+      href={`${
+        section != 'customerService'
+          ? '/#' + section
+          : 'https://www.chatdogge.xyz/model/detail?modelId=646c1f95eccd6eb308da01fd'
+      }`}
       key={section}
       onClick={onClick}>
       {nameMap[section]}
