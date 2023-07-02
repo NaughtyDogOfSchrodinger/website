@@ -60,7 +60,7 @@ const DesktopNav: FC<{navSections: SectionId[]; currentSection: SectionId | null
               />
             ))}
           </nav>
-            <p className="text-white">4008692092</p>
+          <p className="text-white">4008692092</p>
           {/*<Link href="/">*/}
           {/*    <Image alt="Logo" className="w-28 h-10" placeholder="blur" src={logo} />*/}
           {/*</Link>*/}
