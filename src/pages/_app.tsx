@@ -15,7 +15,7 @@ if (!process.env.NEXT_PUBLIC_BAIDU_ANALYTICS) {
   throw new Error('Missing Environment Variable NEXT_PUBLIC_BAIDU_ANALYTICS');
 }
 if (!process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) {
-    throw new Error('Missing Environment Variable NEXT_PUBLIC_GOOGLE_ANALYTICS');
+  throw new Error('Missing Environment Variable NEXT_PUBLIC_GOOGLE_ANALYTICS');
 }
 const MyApp = memo(({Component, pageProps}: AppProps): JSX.Element => {
   const router = useRouter();
@@ -38,16 +38,15 @@ const MyApp = memo(({Component, pageProps}: AppProps): JSX.Element => {
 
   const getAnalyticsTag = () => {
     return {
-      __html: `<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?${process.env.NEXT_PUBLIC_BAIDU_ANALYTICS}";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-`,
+      __html: `
+                    var _hmt = _hmt || [];
+                    (function() {
+                      var hm = document.createElement("script");
+                      hm.src = "https://hm.baidu.com/hm.js?${process.env.NEXT_PUBLIC_BAIDU_ANALYTICS}";
+                      var s = document.getElementsByTagName("script")[0]; 
+                      s.parentNode.insertBefore(hm, s);
+                    })();
+               `,
     };
   };
   return (
