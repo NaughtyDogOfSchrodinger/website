@@ -21,6 +21,7 @@ import {
   Hero,
   HomepageMeta,
   PortfolioItem,
+  Product,
   SkillGroup,
   Social,
   TestimonialSection,
@@ -374,3 +375,11 @@ export const socialLinks: Social[] = [
   {label: 'Instagram', Icon: InstagramIcon, href: 'https://www.instagram.com/tbakerx/'},
   {label: 'Twitter', Icon: TwitterIcon, href: 'https://twitter.com/TimBakerx'},
 ];
+
+export const productMap: Record<string, Product> = {
+  '1': {
+    title: 'test',
+    description: 'des',
+    videoUrl: 'https://website-1304610958.cos.ap-nanjing.myqcloud.com/IMG_2611.MOV',
+  },
+};

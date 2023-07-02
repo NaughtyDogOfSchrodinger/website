@@ -148,3 +148,12 @@ export interface Social {
   Icon: FC<IconProps>;
   href: string;
 }
+
+/**
+ * Product items
+ */
+export interface Product {
+  title: string;
+  description: string;
+  videoUrl: string;
+}

@@ -12,16 +12,20 @@ if (!process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) {
 export default function Document() {
   return (
     <Html lang="en">
-      <Head>
-        <meta charSet="utf-8" />
-        {/* google translate breaks react:
+      {process.env.NODE_ENV === 'production' ? (
+        <Head>
+          <meta charSet="utf-8" />
+          {/* google translate breaks react:
           - https://github.com/facebook/react/issues/11538
           - https://bugs.chromium.org/p/chromium/issues/detail?id=872770 */}
-        <meta content="notranslate" name="google" />
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+          <meta content="notranslate" name="google" />
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -29,9 +33,18 @@ export default function Document() {
               page_path: window.location.pathname,
             });
           `,
-          }}
-        />
-      </Head>
+            }}
+          />
+        </Head>
+      ) : (
+        <Head>
+          <meta charSet="utf-8" />
+          {/* google translate breaks react:
+          - https://github.com/facebook/react/issues/11538
+          - https://bugs.chromium.org/p/chromium/issues/detail?id=872770 */}
+          <meta content="notranslate" name="google" />
+        </Head>
+      )}
       <body className="bg-black">
         <Main />
         <NextScript />

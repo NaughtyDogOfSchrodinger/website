@@ -30,9 +30,10 @@ const MyApp = memo(({Component, pageProps}: AppProps): JSX.Element => {
         page_path: url,
       });
     };
-    router.events.on('routeChangeComplete', handleRouteChange);
+
+    process.env.NODE_ENV === 'production' && router.events.on('routeChangeComplete', handleRouteChange);
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
+      process.env.NODE_ENV === 'production' && router.events.off('routeChangeComplete', handleRouteChange);
     };
   }, [router.events]);
 
@@ -51,9 +52,11 @@ const MyApp = memo(({Component, pageProps}: AppProps): JSX.Element => {
   };
   return (
     <>
-      <Head>
-        <script dangerouslySetInnerHTML={getAnalyticsTag()} />
-      </Head>
+      {process.env.NODE_ENV === 'production' && (
+        <Head>
+          <script dangerouslySetInnerHTML={getAnalyticsTag()} />
+        </Head>
+      )}
       <Analytics />
       <DefaultSeo {...DEFAULT_SEO_CONFIG} />
       <Component {...pageProps} />
