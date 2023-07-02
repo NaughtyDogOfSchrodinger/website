@@ -1,5 +1,5 @@
 import {Head, Html, Main, NextScript} from 'next/document';
-import process from "process";
+import process from 'process';
 
 // next/document <Head /> vs next/head <Head />
 //
@@ -7,7 +7,7 @@ import process from "process";
 // rebuild the next/head fields each time it's called, and won't overwrite next/document's Head.
 
 if (!process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) {
-    throw new Error('Missing Environment Variable NEXT_PUBLIC_GOOGLE_ANALYTICS');
+  throw new Error('Missing Environment Variable NEXT_PUBLIC_GOOGLE_ANALYTICS');
 }
 export default function Document() {
   return (
